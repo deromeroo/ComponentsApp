@@ -9,9 +9,9 @@ interface Props {
     white?: boolean
 }
 
-export const Title = ({ text, safe = false, white = false}: Props) => {
+export const Title = ({ text, safe = false, white = false }: Props) => {
 
-   const {top} = useSafeAreaInsets()
+  const { top } = useSafeAreaInsets()
 
   return (
     <View>
