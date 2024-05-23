@@ -1,35 +1,24 @@
 
-import { Animated, Easing, Pressable, StyleSheet, Text, View } from "react-native"
+import { Animated, Pressable, StyleSheet, Text, View } from "react-native"
 import { colors } from "../../../config/theme/theme"
-import { useRef } from "react"
+import { useAnimation } from "../../hooks/useAnimation"
 
 export const Animation101Screen = () => {
 
-  const animatedOpacity = useRef( new Animated.Value(0) ).current
-  const animatedTop = useRef( new Animated.Value(-100) ).current
+  const {
+    animatedOpacity,
+    animatedTopPosition,
 
-  const fadeIn = () => {
+    fadeIn,
+    fadeOut,
+    startMovingTopPosition
+  } = useAnimation()
 
-    Animated.timing(animatedTop, {
-      toValue: 0,
-      duration: 700,
-      useNativeDriver: true,
-      easing: Easing.bounce
-    }).start( () => console.log('Animation Ended'))
-
-    Animated.timing( animatedOpacity, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true
-    }).start( () => console.log('Animation ended'))
-
-  }
-  const fadeOut = () => {
-    Animated.timing( animatedOpacity, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true
-    }).start( () => animatedTop.resetAnimation() )
+  const onPressFadeIn = () => {
+    fadeIn({})
+    startMovingTopPosition({
+      initialPosition: -100,
+    })
   }
 
   return (
@@ -39,16 +28,16 @@ export const Animation101Screen = () => {
             {
               opacity: animatedOpacity,
               transform: [{
-                translateY: animatedTop
+                translateY: animatedTopPosition
               }]
             }
         ]} />
 
-        <Pressable onPress={ fadeIn } style={{ marginTop: 10 }}>
+        <Pressable onPress={ () => onPressFadeIn() } style={{ marginTop: 10 }}>
             <Text style={styles.text}>FadeIn</Text>
         </Pressable>
 
-        <Pressable onPress={ fadeOut } style={{ marginTop: 10 }}>
+        <Pressable onPress={ () => fadeOut({}) } style={{ marginTop: 10 }}>
             <Text style={styles.text}>FadeOut</Text>
         </Pressable>
     </View>
