@@ -1,10 +1,11 @@
 import { useRef } from "react"
-import { Animated, Easing } from "react-native"
+import { Animated, Easing, PanResponder } from "react-native"
 
 export const useAnimation = () => {
 
     const animatedOpacity = useRef( new Animated.Value(0) ).current
     const animatedTopPosition = useRef( new Animated.Value(0) ).current
+    const pan = useRef(new Animated.ValueXY()).current;
   
     const fadeIn = ({ duration = 300, toValue = 1, callback = () => {} }) => {
       Animated.timing( animatedOpacity, {
@@ -38,11 +39,32 @@ export const useAnimation = () => {
             easing: easing
         }).start( callback )
     }
+
+    const panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([
+        null,
+        {
+          dx: pan.x,
+          dy: pan.y
+        }
+      ],{ useNativeDriver: false }),
+      onPanResponderRelease: () => {
+        Animated.spring(
+          pan,
+          {
+            toValue: {x:0, y:0}, useNativeDriver: false
+          }
+        ).start()
+      }
+    })
   
   return {
     // Properties
     animatedOpacity,
     animatedTopPosition,
+    pan,
+    panResponder,
 
     //Methods
     fadeIn,
