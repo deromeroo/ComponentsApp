@@ -7,28 +7,39 @@ import { Title } from "../../components/ui/Title"
 export const AlertScreen = () => {
 
     const createTwoButtonAlert = () =>
-        Alert.alert('Alert Title', 'My Alert Msg', [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
+    Alert.alert('Alert Title', 'My Alert Msg', [
+        {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
     
-      const createThreeButtonAlert = () =>
-        Alert.alert('Alert Title', 'My Alert Msg', [
-          {
-            text: 'Ask me later',
-            onPress: () => console.log('Ask me later pressed'),
-          },
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
+    const createThreeButtonAlert = () =>
+    Alert.alert('Alert Title', 'My Alert Msg', [
+        {
+        text: 'Ask me later',
+        onPress: () => console.log('Ask me later pressed'),
+        },
+        {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
+
+    const showPrompt = () => {
+        Alert.prompt(
+            'Email',
+            'Add your email',
+            (value:string) => console.log(value),
+            'secure-text',
+            'Default Value',
+            'number-pad'
+        )
+    }
 
 
   return (
@@ -51,7 +62,7 @@ export const AlertScreen = () => {
 
         <Button 
             text="Prompt - Input"
-            onPress={ () => {} }
+            onPress={ showPrompt }
         />
 
     </CustomView>
