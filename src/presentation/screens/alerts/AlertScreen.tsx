@@ -3,6 +3,7 @@ import { globalStyles } from "../../../config/theme/theme"
 import { Button } from "../../components/ui/Button"
 import { CustomView } from "../../components/ui/CustomView"
 import { Title } from "../../components/ui/Title"
+import { showPromt } from "../../../config/adapters/prompt.adapter"
 
 export const AlertScreen = () => {
 
@@ -30,17 +31,17 @@ export const AlertScreen = () => {
         {text: 'OK', onPress: () => console.log('OK Pressed')},
     ]);
 
-    const showPrompt = () => {
-        Alert.prompt(
-            'Email',
-            'Add your email',
-            (value:string) => console.log(value),
-            'secure-text',
-            'Default Value',
-            'number-pad'
-        )
-    }
 
+    const onShowPrompt = () => {
+        showPromt({
+            title: 'Show Prompt',
+            subTitle: 'Ipsum in quis et amet esse ad reprehenderit.',
+            buttons: [
+                {text: 'Ok', onPress: () => console.log('Ok')}
+            ],
+            placeholder: 'Holddd'
+        })
+    }
 
   return (
     <CustomView style={globalStyles.globalMargin}>
@@ -62,7 +63,7 @@ export const AlertScreen = () => {
 
         <Button 
             text="Prompt - Input"
-            onPress={ showPrompt }
+            onPress={ onShowPrompt }
         />
 
     </CustomView>
