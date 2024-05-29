@@ -5,6 +5,7 @@ import { CustomView } from "../../components/ui/CustomView"
 import { Card } from "../../components/ui/Card";
 import { CustomSwitch } from "../../components/ui/CustomSwitch";
 import { Separator } from "../../components/ui/Separator";
+import { Title } from "../../components/ui/Title";
 
 export const SwitchScreen = () => {
 
@@ -19,6 +20,9 @@ export const SwitchScreen = () => {
 
   return (
     <CustomView style={{ marginTop: top + 10, paddingHorizontal: 10}}>
+
+      <Title text="Switches" safe />
+
       <Card>
         <CustomSwitch 
           isOn={ state.isActive }
