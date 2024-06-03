@@ -27,8 +27,9 @@ export default function PullToRefreshScreen() {
             refreshing={ isRefreshing }
             progressViewOffset={ top }
             colors={[colors.primary, 'red', 'orange']}
+            tintColor={ colors.primary }
             onRefresh={ onRefresh }
-            // progressBackgroundColor={colors.cardBackground}
+            progressBackgroundColor={colors.cardBackground}
         />}
 
         style={[globalStyles.mainContainer, globalStyles.globalMargin, {backgroundColor: colors.background}]}
