@@ -19,7 +19,7 @@ export const SwitchScreen = () => {
 
 
   return (
-    <CustomView style={{ marginTop: top + 10, paddingHorizontal: 10}}>
+    <CustomView style={{ marginTop: top , paddingHorizontal: 10}}>
 
       <Title text="Switches" safe />
 

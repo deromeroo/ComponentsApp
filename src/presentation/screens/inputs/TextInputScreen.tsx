@@ -2,10 +2,11 @@ import { KeyboardAvoidingView, Platform, Text, TextInput } from 'react-native'
 import { Card } from '../../components/ui/Card'
 import { CustomView } from '../../components/ui/CustomView'
 import { Title } from '../../components/ui/Title'
-import { colors, globalStyles } from '../../../config/theme/theme'
-import { useState } from 'react'
+import { globalStyles } from '../../../config/theme/theme'
+import { useContext, useState } from 'react'
 import { View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { ThemeContext } from '../../context/ThemeContext'
 
 export const TextInputScreen = () => {
 
@@ -14,6 +15,8 @@ export const TextInputScreen = () => {
         email: '',
         phone: ''
     })
+
+    const {colors} = useContext(ThemeContext)
 
 
   return (
@@ -75,7 +78,7 @@ export const TextInputScreen = () => {
                 </Card>
             </CustomView>
 
-            <View style={{ height: 20 }} />
+            <View style={{ height: 20, backgroundColor: colors.background }} />
         </ScrollView>
     </KeyboardAvoidingView>
   )

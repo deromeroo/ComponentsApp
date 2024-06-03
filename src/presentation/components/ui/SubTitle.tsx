@@ -1,16 +1,18 @@
 import { Text } from "react-native"
-import { colors, globalStyles } from "../../../config/theme/theme"
+import { globalStyles } from "../../../config/theme/theme"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { useContext } from "react"
+import { ThemeContext } from "../../context/ThemeContext"
 
 interface Props {
     text: string
     safe?: boolean
-    backgroundcolor?: string
 }
 
-export const SubTitle = ({ text, safe = false, backgroundcolor = colors.background }: Props) => {
+export const SubTitle = ({ text, safe = false }: Props) => {
 
     const { top } = useSafeAreaInsets()
+    const {colors} = useContext(ThemeContext)
 
   return (
     <Text
@@ -18,8 +20,9 @@ export const SubTitle = ({ text, safe = false, backgroundcolor = colors.backgrou
             ...globalStyles.subTitle,
             marginTop: safe ? top : 0,
             marginBottom: 10,
-            backgroundColor: backgroundcolor,
-            paddingVertical: 5
+            backgroundColor: colors.cardBackground,
+            paddingVertical: 5,
+            color: colors.text
         }}
     >
         {text}
